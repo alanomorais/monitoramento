@@ -1,4 +1,15 @@
 services:
+  nginx-proxy:
+    image: nginx:latest
+    container_name: nginx-proxy
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./nginx/conf.d:/etc/nginx/conf.d:ro
+    ports:
+      - "80:80"
+    networks:
+      - zabbix-net
+    restart: unless-stopped
   mysql-server:
     image: mysql:8.3
     container_name: mysql-server
@@ -78,7 +89,7 @@ services:
     image: grafana/grafana:latest
     container_name: grafana
     environment: 
-    - GF_INSTALL_PLUGINS=alexanderzobnin-zabbix-app # Instala o plugin do Zabbix
+    - GF_INSTALL_PLUGINS=alexanderzobnin-zabbix-app
     volumes:
       - grafana-data:/var/lib/grafana
     ports:
