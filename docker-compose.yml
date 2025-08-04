@@ -88,7 +88,9 @@ services:
   grafana:
     image: grafana/grafana:latest
     container_name: grafana
-    environment: 
+    environment:
+    - GF_SECURITY_ADMIN_USER=admin
+    - GF_SECURITY_ADMIN_PASSWORD=admin
     - GF_INSTALL_PLUGINS=alexanderzobnin-zabbix-app
     volumes:
       - grafana-data:/var/lib/grafana
