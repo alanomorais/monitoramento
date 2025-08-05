@@ -1,0 +1,3 @@
+plugins:
+  - name: alexanderzobnin-zabbix-app
+    enabled: true
